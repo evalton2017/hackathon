@@ -1,0 +1,218 @@
+<div class="jumbotron">
+    <h1>Bem Vindo </h1>
+      <!--Pesquisar Homes-->
+            <div class="row">
+                    <div class="col col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control"  placeholder="Digite o nome" ng-model="pesq.nome">       
+                        </div>
+                    </div>
+                    <br>
+                    <!--Cadastrar Homes-->
+                    <div class="col col-md-3">
+                      <div ng-show="!vm.home.id">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastrar" >Cadastrar Novo Home</button>
+                      </div>
+                    </div>
+                    <div class="col col-md-3">
+                      <div ng-show="vm.home.id">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chinelo">Cadastrar Chinelo
+                        </button>
+                       </div>
+                    </div>
+
+                    <div class="col col-md-2">
+                        <div ng-show="vm.home.id">
+                            <button type="submit" class="btn btn-warning" ng-click="vm.voltar()">Voltar a pesquisa</button>
+                         </div>
+                      </div>
+                    
+
+
+                   
+             <!--Editar home-->
+             </div>
+             <div ng-show="vm.home.id">
+              <form ng-submit="vm.atualizar()">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nome</label>
+                  <input type="text" class="form-control" id="nome" aria-describedby="emailHelp" 
+                   maxlength="20" placeholder="Digite o nome" ng-model="vm.home.nome">
+                </div>
+    
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="situacao" ng-model="vm.home.situacao">
+                    <label class="form-check-label" for="defaultCheck1">
+                    Ativo
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+                                 
+            </form>
+
+            
+             </div>
+            
+
+             
+
+          <!-- Modal Cadastrar novo -->
+          <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Cadastro de chinelo</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+              
+                  <form ng-submit="vm.salvar()">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nome</label>
+                      <input type="text" class="form-control" id="nome" aria-describedby="emailHelp" 
+                       maxlength="20" placeholder="Digite o nome" ng-model="vm.home.nome" >
+                    </div>
+        
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="situacao" ng-model="vm.home.situacao">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Ativo
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                   
+                    <a href="#/" class="btn btn-warning">Voltar</a>          
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                 
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Cadastrar chinelo novo -->
+          <div class="modal fade" id="chinelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro de chinelo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="vm.salvarChinelo()">
+                  <input type="text" ng-model="vm.home.id" disabled>
+                
+                  <div class="form-group" >
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Chinelo</label>
+                        <input type="text" class="form-control"  maxlength="20" placeholder="Chinelo" ng-model="vm.chinelo.modelo">
+                  </div>
+              
+                  <div class="row" >
+                    <div class="col col-md6">
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Cor</label>
+                        <input type="text" class="form-control"  placeholder="Cor" ng-model="vm.chinelo.cor">
+                      </div>
+                  </div>
+                  <div class="col col-md6">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Tamanho</label>
+                      <input type="text" class="form-control"  placeholder="Tamanho" ng-model="vm.chinelo.tamanho">
+                    </div>
+                  </div>
+                  </div>
+                </div>                
+             
+                <button type="submit" class="btn btn-primary">Salvar</button>
+              </form>
+              
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                
+              
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <!--Tabela para mostrar os chinelos de um determinado home-->
+          <div ng-show="vm.home.id">
+            <h3>Chinelos associados a {{vm.home.nome}} </h3>
+
+            <table class="table table-hover table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Chinelo</th>
+                    <th scope="col">Tamanho</th>
+                    <th scope="col">Cor</th>
+                  
+                  </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat='chinelo in vm.chinelos'>
+                      <td><b>{{chinelo.id}}</b></td>
+                        <td>{{chinelo.modelo}}</td>
+                        <td>{{chinelo.tamanho}}</td>
+                        <td>{{chinelo.cor}}</td>
+                     
+                  </tr>
+                </tbody>
+              </table>
+
+          </div>
+   
+          <!--tabela Geral -->
+          <div ng-show="!vm.home.id">
+            <table class="table table-hover table-dark" >
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Quantidade Chinelos</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody >
+                  <tr ng-repeat='home in vm.homes |filter:pesq'>
+                    <td><b>{{home.id}}</b></td>
+                      <td>{{home.nome}}</td>
+                      <td>{{home.limite}}</td>
+                      <td>
+                        <a href ng-click="vm.editar(home.id)" class="btn btn-warning"><i
+                          class="fas fa-user-edit"> </i> <span>Editar</span></a>
+                        <a href ng-click="vm.deletar(home.id)" class="btn btn-danger" ><i
+                          class="fas fa-trash"> </i> <span>Excluir</span></a>
+    
+                      </td>
+                    <td>
+        
+                    </td>
+                </tr>
+              </tbody>
+    </table>
+
+          </div>
+          
+
+
+         
+          <a href="#" class="btn btn-warning btn-block"><i
+          class="fas fa-arrow-left"> </i> <span>Voltar</span></a>
+       
+        
+        
+ 
+  
+</div>
+  
