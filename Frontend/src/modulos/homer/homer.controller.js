@@ -83,8 +83,7 @@ export default class HomerController {
       homerService.getEditar(obj).then(function(resp){
         vm.home = resp.data;
         vm.chinelos=[];
-        vm.chinelos=vm.home.chinelos;  
-        alert("chinelo incluido com sucesso");      
+        vm.chinelos=vm.home.chinelos;     
         $state.go('pesquisar')
       })
            
